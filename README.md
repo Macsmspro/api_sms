@@ -133,6 +133,7 @@ Les messages de réussite
 "message" : "Sms envoyé au 229xxxxxxxx"
 }`
 
+Cette réponse est retournée avec un code` 200` lorsque le message a été envoyé sans aucun problème rencontré.
 
 
                  `Créez un compte au https://macsmspro.com et obtenez un token dans votre tableau de bord : `
