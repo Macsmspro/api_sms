@@ -4,42 +4,52 @@ L' API est appelée par l'url "https://macsmspro.com/api/otp.php" . Il autorise 
  Le token fournit les informations nécessaires à l'api pour reconnaitre le compte utilisateur lors d'une requête. Lorsque vous possédez un token et que vous en génerez un nouveau, cette action écrasse l'ancien token et le rend ainsi obsolète. Toutes requetes envoyées par ce dernier ne sera plus autorisé par l'api.
  Pour avoir un token , veuillez créer un compte macsmspro ici: https://macsmspro.com .
  
- 
+ <br>
                              B- Corps de la requete
-                             
+                  <br>           
+
  Les envoies de requêtes vers l'api doivent respecter un standard de données pré-definies. Seules les données de format 'form urlencode' sont acceptées , les autres ne sont pas traitées en requête par le serveur. Comme données requises par le serveur pour un envoi de sms nous avons:
+ <br>
+
  *Le Nom
-Il s'agit du nom que portera le message. Il a les propriétés de ne pas être NULL ou vide, et doit pas excéder plus de dix (10) caratères. Désigné dans le corps de la reqête par name.
-
+Il s'agit du nom que portera le message. Il a les propriétés de ne pas être `NULL` ou vide, et doit pas excéder plus de dix (10) caratères. Désigné dans le corps de la reqête par name.
+<br>
 *Le Message
-Il n'est rien d'autre que le contenu du message à envoyer. Reconnu dans le corps de la requête par la propriété message, il est requis et ne peut donc être NULL ou vide.
-
+Il n'est rien d'autre que le contenu du message à envoyer. Reconnu dans le corps de la requête par la propriété message, il est requis et ne peut donc être `NULL` ou vide.
+<br>
 *Le téléphone
-Il représente le numéro de téléphone destinataire, il doit être suvi de son indicatif, ne doit contenir aucun espace et ne peut être NULL ou vide.
-Ex: 44xxxxxxxx Désigné dans le corps de la reqête par telephone
-
+Il représente le numéro de téléphone destinataire, il doit être suvi de son indicatif, ne doit contenir aucun espace et ne peut être `NULL` ou vide.
+Ex: `44xxxxxxxx` Désigné dans le corps de la reqête par telephone
+<br>
 *Le token
 Il est question du token que vous avez généré pour votre compte, il est requis pour tout envoi vers API. Il est utilisé dans le corps de reqête sous le même nom.
-
-Lorsque les critères d'une donnée ne sont pas vérifiés une erreur de type 422 est retournéé. Vous retrouverez les détails sur les types d'erreurs dans la section suivante.
- 
+<br>
+Lorsque les critères d'une donnée ne sont pas vérifiés une erreur de type `422` est retournéé. Vous retrouverez les détails sur les types d'erreurs dans la section suivante.
+ <br>
                              C- Réponse du serveur
- 
- Le serveur retourne deux catégories possible de réponse lors d'une rêquete. Nous avons les retours de type ERROR et les retours de type SUCCESS.
+ <br>
+ Le serveur retourne deux catégories possible de réponse lors d'une rêquete. Nous avons les retours de type ERROR et les retours de type `SUCCESS`.
 Les messages d'erreur
 Les messages d'erreur sont sous le format:
-
+<br>
              C-1 - Les messages d'erreur
+<br>
 
 `"error" : {
 "message" : {
 "nom de l'erreur" : "message d'erreur"
 }
 }`
+
+<br>
+
 OU
 `"error" : {
 "message" : "message d'erreur"
 }`
+
+<br>
+
 OU
 `"error" : {
 "messages" : [
@@ -49,21 +59,31 @@ OU
 ]
 }`
 
+<br>
 
           C-2 Quelques erreurs
-
+<br>
 
 ``"error" : {
 "message" : "Method Not Allowed"
 }``
-Cette erreur est retournée avec un code `405` lorsque la requete envoyée n'est pas de type POST
+
+<br>
+
+Cette erreur est retournée avec un code `405` lorsque la requete envoyée n'est pas de type `POST`
+<br>
 `"error" : {
 "message" : "Crédit insuffisant"
 }`
-Cette erreur est retournée avec un code` 403` lorsque le compte utilisateur ne dispose pas d'assez de crédit pour effectuer l'opération.
+<br>
+Cette erreur est retournée avec un code `403` lorsque le compte utilisateur ne dispose pas d'assez de crédit pour effectuer l'opération.
+<br>
+
 `"error" : {
 "message" : "Sms non envoyé"
 }`
+<br>
+
 Cette erreur est retournée avec un code` 422`. Divers raisons peuvent être à la source de cet erreur,
 Le numéro de destination que vous essayez d'atteindre ne peut pas recevoir ce message.
 L'appareil que vous essayez d'atteindre n'a pas un signal suffisant.
@@ -71,18 +91,29 @@ L'appareil ne peut pas recevoir de SMS (par exemple, le numéro de téléphone a
 Le numéro de destination figure sur le registre national des numéros de téléphone exclus du pays par le réseau de destination.
 Il y a un problème avec l'opérateur de téléphonie mobile du pays.
 
+<br>
+
 `"error" : {
 "message" : {
 "token" : "Le token est requis"
 }
 }`
-Cette erreur est retournée avec un code 422 lorsque la valeur du token est vide ou NULL
+
+<br>
+
+Cette erreur est retournée avec un code `422` lorsque la valeur du token est vide ou `NULL`
+
+<br>
 `"error" : {
 "message" : {
 "token" : "token invalid"
 }
 }`
-Cette erreur est retournée avec un code 401 lorsque la valeur du token envoyée ne correspond à aucun compte utilisateur du système.
+<br>
+
+Cette erreur est retournée avec un code `401` lorsque la valeur du token envoyée ne correspond à aucun compte utilisateur du système.
+<br>
+
 `"error" : {
 "messages" : [
 {
@@ -90,7 +121,11 @@ Cette erreur est retournée avec un code 401 lorsque la valeur du token envoyée
 }
 ]
 }`
-Cette erreur est retournée avec un code `422` lorsque la valeur du numero de telephone est vide ou NULL
+
+<br>
+Cette erreur est retournée avec un code `422` lorsque la valeur du numero de telephone est vide ou `NULL`
+<br>
+
 `"error" : {
 "messages" : [
 {
@@ -98,7 +133,13 @@ Cette erreur est retournée avec un code `422` lorsque la valeur du numero de te
 }
 ]
 }`
-Cette erreur est retournée avec un code `422` lorsque la valeur du message est vide ou NULL
+
+<br>
+
+Cette erreur est retournée avec un code `422` lorsque la valeur du message est vide ou `NULL`
+
+<br>
+
 `"error" : {
 "messages" : [
 {
@@ -106,7 +147,12 @@ Cette erreur est retournée avec un code `422` lorsque la valeur du message est 
 }
 ]
 }`
-Cette erreur est retournée avec un code 422 lorsque la valeur du nom est vide ou NULL
+
+
+Cette erreur est retournée avec un code 422 lorsque la valeur du nom est vide ou `NULL`
+
+<br>
+
 `"error" : {
 "messages" : [
 {
@@ -114,8 +160,11 @@ Cette erreur est retournée avec un code 422 lorsque la valeur du nom est vide o
 }
 ]
 }`
+
+<br>
 Cette erreur est retournée avec un code `422` lorsque la valeur du nom dépasse les dix caractères
-Plusieurs messages d'erreur peuvent se briquer comme suit
+Plusieurs messages d'erreur peuvent se briquer comme suit <br>
+
 `"error" : {
 "messages" : [
 {
@@ -127,8 +176,12 @@ Plusieurs messages d'erreur peuvent se briquer comme suit
 }
 ]
 }`
+
+<br>
+
 Cette erreur est retournée avec un code `422` lorsque plusieurs données ne sont pas vérifiées à la fois `NULL`
-Les messages de réussite
+
+`ENVOI SMS REUSSI`
 `"success" : {
 "message" : "Sms envoyé au 44xxxxxxxx"
 }`
