@@ -4,7 +4,7 @@ $url = "https://macsmspro.com/api/otp.php";
 $fields = array(
     
     "name" => urlencode("xxxxxx"), // à remplacer par le nom du message
-    "telephone" => urlencode("229xxxxxxxx"), // à remplacer par le numéro du destinataire
+    "telephone" => urlencode("44xxxxxxxx"), // à remplacer par le numéro du destinataire
     "message" => urlencode("Mon message"), // à remplacer par le message à envoyer
     "token" => urlencode("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"), // à remplacer par votre token 
 );
